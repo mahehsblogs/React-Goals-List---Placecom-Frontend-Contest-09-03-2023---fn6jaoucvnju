@@ -31,6 +31,7 @@ function GoalForm(props) {
         <input
           type="text"
           id="goal"
+          name="goal"
           value={enteredGoal}
           onChange={goalInputChangeHandler}
         />
@@ -40,6 +41,7 @@ function GoalForm(props) {
         <input
           type="text"
           id="deadline"
+          name="deadline"
           value={enteredDeadline}
           onChange={deadlineInputChangeHandler}
         />
