@@ -1,50 +1,52 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-const GoalForm = () => {
-  const [formData, setFormData] = useState({
-    goal: "",
-    by: ""
-  });
+function GoalForm(props) {
+  const [enteredGoal, setEnteredGoal] = useState('');
+  const [enteredDeadline, setEnteredDeadline] = useState('');
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value
-    }));
+  const goalInputChangeHandler = (event) => {
+    setEnteredGoal(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const deadlineInputChangeHandler = (event) => {
+    setEnteredDeadline(event.target.value);
+  };
+
+  const submitHandler = (event) => {
     event.preventDefault();
-    setAllGoals((prevState) => [
-      ...prevState,
-      { goal: formData.goal, by: formData.by }
-    ]);
-    setFormData({ goal: "", by: "" });
+    const newGoal = {
+      id: Math.random().toString(),
+      goal: enteredGoal,
+      deadline: enteredDeadline,
+    };
+    props.onAddGoal(newGoal);
+    setEnteredGoal('');
+    setEnteredDeadline('');
   };
 
   return (
-    <>
-      <h1>My Goals</h1>
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={submitHandler}>
+      <div>
+        <label htmlFor="goal">Goal</label>
         <input
           type="text"
-          name="goal"
-          placeholder="Goal..."
-          value={formData.goal}
-          onChange={handleChange}
+          id="goal"
+          value={enteredGoal}
+          onChange={goalInputChangeHandler}
         />
+      </div>
+      <div>
+        <label htmlFor="deadline">By</label>
         <input
           type="text"
-          name="by"
-          placeholder="By..."
-          value={formData.by}
-          onChange={handleChange}
+          id="deadline"
+          value={enteredDeadline}
+          onChange={deadlineInputChangeHandler}
         />
-        <button type="submit">Add</button>
-      </form>
-    </>
+      </div>
+      <button type="submit">Add</button>
+    </form>
   );
-};
+}
 
 export default GoalForm;

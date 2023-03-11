@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import "../styles/App.css";
-import GoalForm from "./GoalForm";
-import ListOfGoals from "./ListOfGoals";
+import React, { useState } from 'react';
+import GoalForm from './GoalForm';
+import ListOfGoals from './ListOfGoals';
 
-const App = () => {
-  const [allGoals, setAllGoals] = useState([]);
+function App() {
+  const [goalsList, setGoalsList] = useState([]);
+
+  const addGoalHandler = (newGoal) => {
+    setGoalsList((prevGoalsList) => [...prevGoalsList, newGoal]);
+  };
 
   return (
-    <div id="main">
-      <GoalForm setAllGoals={setAllGoals} />
-      <ListOfGoals allGoals={allGoals} />
+    <div>
+      <h1>Goals App</h1>
+      <GoalForm onAddGoal={addGoalHandler} />
+      <ListOfGoals goalsList={goalsList} />
     </div>
   );
-};
+}
 
 export default App;
