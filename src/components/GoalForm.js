@@ -29,9 +29,9 @@ function GoalForm(props) {
       <div>
         <label htmlFor="goal">Goal</label>
         <input
-          type="text"
+          name="text"
           id="goal"
-          name="goal"
+          by="goal"
           value={enteredGoal}
           onChange={goalInputChangeHandler}
         />
