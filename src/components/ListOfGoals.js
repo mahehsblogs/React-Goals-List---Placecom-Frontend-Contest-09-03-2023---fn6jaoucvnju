@@ -1,5 +1,5 @@
 import React from 'react';
-
+// function of List of goals
 function ListOfGoals(props) {
   return (
     <ul>
